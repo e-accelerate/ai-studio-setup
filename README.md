@@ -1,5 +1,7 @@
 # AI Studio Setup
 
+By **E-accelerate** · contact on X: [@EAccelerate_42](https://x.com/EAccelerate_42)
+
 Landing page for fixed-price remote work on private AI running on your own hardware:
 
 - hardware setup: DGX Spark / GB10 clusters, Windows RTX workstations, Apple Silicon Macs (MLX)

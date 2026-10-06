@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Private AI on your own hardware: setup, private AI builds and fine-tuning on DGX Spark, RTX workstations and Apple Silicon (MLX).">
-<title>AI Studio Setup</title>
+<meta name="description" content="E-accelerate: private AI on your own hardware. Setup, private AI builds and fine-tuning on DGX Spark, RTX workstations and Apple Silicon (MLX).">
+<title>AI Studio Setup · E-accelerate</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
@@ -57,6 +57,9 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--copper); outlin
 header { display: grid; gap: 20px; padding-top: 56px; }
 .cable { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--copper), var(--copper-soft) 50%, var(--copper)); max-width: 220px; }
 .lede { font-size: 1.15rem; color: var(--muted); }
+.brand { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.brand .cable { flex: 0 1 120px; min-width: 60px; }
+.brand-name { font: 700 1.15rem/1 var(--display); letter-spacing: -0.01em; }
 .cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
 .btn {
   display: inline-block; padding: 12px 20px; border-radius: 6px; font-weight: 600; text-decoration: none;
@@ -122,7 +125,7 @@ section { display: grid; gap: 24px; }
 
 <div class="wrap">
   <header>
-    <div class="cable" aria-hidden="true"></div>
+    <div class="brand"><div class="cable" aria-hidden="true"></div><span class="brand-name">E-accelerate</span></div>
     <span class="label">DGX Spark · GB10 · RTX workstations · Apple Silicon · MLX</span>
     <h1>Private AI on your own hardware, set up, tuned and fine-tuned.</h1>
     <p class="lede">Language, image, video and voice models running on your DGX Spark, RTX workstation or Mac, fine-tuned on your own data and connected to the tools you already use. Fixed price, done remotely, and your data never leaves your machines.</p>
@@ -364,16 +367,19 @@ section { display: grid; gap: 24px; }
       <div><h3>Can fine-tuning make a small model as good as a big one?</h3><p>For a narrow task, often close. For general knowledge, no. The evaluation before any fine-tune tells you which case you are in, before you pay for training.</p></div>
       <div><h3>Mac, Spark or RTX: which should I buy?</h3><p>It depends on the model size and how fast you need answers. I run all three daily, so I can tell you what each one handles before you spend money. Software does not always carry over: engines built for Apple's MLX do not run on a Spark, and the reverse.</p></div>
       <div><h3>Do you host models for me?</h3><p>No. Your hardware, your data. I don't resell inference.</p></div>
-      <div><h3>Is this affiliated with NVIDIA or ASUS?</h3><p>No. Independent consulting, based on running these boxes daily: two GB10s, an RTX PRO 5000 workstation and an Apple Silicon Mac running MLX.</p></div>
+      <div><h3>Is this affiliated with NVIDIA or ASUS?</h3><p>No. E-accelerate is independent consulting, based on running these boxes daily: two GB10s, an RTX PRO 5000 workstation and an Apple Silicon Mac running MLX.</p></div>
     </div>
   </section>
 
   <section id="contact" class="contact" aria-labelledby="ct">
     <h2 id="ct">Book a free 15-minute call</h2>
-    <p>Contact details coming soon.</p>
+    <p>Send a message on X with your hardware and what you want to run. I reply with a time for the call.</p>
+    <div class="cta-row">
+      <a class="btn" href="https://x.com/EAccelerate_42" target="_blank" rel="noopener">Message @EAccelerate_42 on X</a>
+    </div>
   </section>
 
-  <footer>Independent consultant. All figures measured on my own two-box GB10 cluster and RTX PRO 5000 workstation; your results depend on your hardware, cabling and model.</footer>
+  <footer>E-accelerate, independent consulting. All figures measured on my own two-box GB10 cluster and RTX PRO 5000 workstation; your results depend on your hardware, cabling and model.</footer>
 </div>
 
 </body>
