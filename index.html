@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="description" content="Fixed-price remote setup for DGX Spark / GB10 clusters and private AI studios on RTX workstations.">
+<meta name="description" content="Private AI on your own hardware: setup, private AI builds and fine-tuning on DGX Spark, RTX workstations and Apple Silicon (MLX).">
 <title>AI Studio Setup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -78,6 +78,7 @@ th { font: 500 0.75rem/1 var(--mono); text-transform: uppercase; letter-spacing:
 td.price { font: 500 1.1rem var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
 td .name { font-weight: 600; display: block; margin-bottom: 4px; }
 td .desc { color: var(--muted); font-size: 0.93rem; }
+h3.group { font-size: 1.05rem; color: var(--copper); margin-top: 8px; }
 .note { font-size: 0.92rem; color: var(--muted); }
 
 /* video */
@@ -122,9 +123,9 @@ section { display: grid; gap: 24px; }
 <div class="wrap">
   <header>
     <div class="cable" aria-hidden="true"></div>
-    <span class="label">Remote setup · DGX Spark · ASUS GX10 · RTX workstations</span>
-    <h1>Two GB10 boxes, running at the speed the recipe promised.</h1>
-    <p class="lede">I set up DGX Spark and GB10 clusters over their ConnectX link, tune the model you want to run, and connect it to your coding agent. Fixed price, done remotely, every change reversible.</p>
+    <span class="label">DGX Spark · GB10 · RTX workstations · Apple Silicon · MLX</span>
+    <h1>Private AI on your own hardware, set up, tuned and fine-tuned.</h1>
+    <p class="lede">Language, image, video and voice models running on your DGX Spark, RTX workstation or Mac, fine-tuned on your own data and connected to the tools you already use. Fixed price, done remotely, and your data never leaves your machines.</p>
     <div class="cta-row">
       <a class="btn" href="#packages">See packages</a>
       <a class="btn ghost" href="#contact">Book a free 15-min call</a>
@@ -193,30 +194,87 @@ section { display: grid; gap: 24px; }
 
   <section id="packages" aria-labelledby="pk">
     <span class="label">Fixed price, remote</span>
-    <h2 id="pk">Packages</h2>
+    <h2 id="pk">Services</h2>
+    <h3 class="group">Set up your hardware</h3>
     <div class="table-wrap">
       <table>
-        <thead><tr><th>Package</th><th>Time</th><th>Price</th></tr></thead>
+        <thead><tr><th>Service</th><th>Time</th><th>Price</th></tr></thead>
         <tbody>
           <tr>
-            <td><span class="name">Health check</span><span class="desc">90-minute session: thermals, ConnectX link and RDMA, memory headroom, container and GPU-architecture sanity. Written findings and a fix list.</span></td>
+            <td><span class="name">Health check</span><span class="desc">90-minute session on any box: thermals, network, memory headroom, drivers and containers. Written findings and a fix list.</span></td>
             <td class="mono">1 day</td><td class="price">$250</td>
           </tr>
           <tr>
-            <td><span class="name">Two-box cluster bring-up</span><span class="desc">NCCL on real RDMA (not silent TCP), both rails carrying traffic, persistent network config, one model served across both boxes and benchmarked on your real prompt sizes. Start/stop scripts and a runbook.</span></td>
+            <td><span class="name">Two-box DGX Spark / GB10 cluster</span><span class="desc">Both ConnectX rails on real RDMA, one large model served across both boxes, benchmarked on your real prompts. Scripts and a runbook.</span></td>
             <td class="mono">2–4 days</td><td class="price">$1,200</td>
           </tr>
           <tr>
-            <td><span class="name">Model serving + coding agent</span><span class="desc">One model tuned for your work (speculative decoding, KV budget, sampling) and connected to Claude Code, opencode or Hermes, checked against the requests your agent actually sends.</span></td>
+            <td><span class="name">Windows + RTX workstation</span><span class="desc">Docker in WSL2 that stays up, a model server that survives updates and reboots, private access from your other machines.</span></td>
+            <td class="mono">1–2 days</td><td class="price">$500</td>
+          </tr>
+          <tr>
+            <td><span class="name">Apple Silicon Mac (MLX)</span><span class="desc">A local model server your apps call like the OpenAI API, with image understanding. Runs offline.</span></td>
+            <td class="mono">1 day</td><td class="price">$400</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="group">Build private AI</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Service</th><th>Time</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="name">Coding agent on your own model</span><span class="desc">Claude Code, opencode or Hermes connected to your local model, tuned for speed and checked against the requests the agent really sends.</span></td>
             <td class="mono">1–2 days</td><td class="price">$600</td>
           </tr>
           <tr>
-            <td><span class="name">Private AI studio</span><span class="desc">On one RTX workstation: a fast chat and coding model, image generation and editing, and short video with sound, exposed as tools your coding agent or chat app can call. Private network access only.</span></td>
+            <td><span class="name">Chat with your documents</span><span class="desc">A private assistant that answers from your files, wiki or tickets, with sources. Nothing is sent to a cloud API.</span></td>
+            <td class="mono">3–5 days</td><td class="price">$1,500</td>
+          </tr>
+          <tr>
+            <td><span class="name">Image and video studio</span><span class="desc">Image generation and editing, short video with sound, on an RTX card or a Mac with MLX. Usable from a web form or as tools for your AI agent.</span></td>
             <td class="mono">3–5 days</td><td class="price">$1,000</td>
           </tr>
           <tr>
-            <td><span class="name">Windows + RTX workstation</span><span class="desc">One big NVIDIA card in a Windows PC, set up for local AI: Docker in WSL2 that stays up, a model server that survives updates and reboots, and ComfyUI image or video workflows. Reachable privately from your other machines.</span></td>
-            <td class="mono">1–2 days</td><td class="price">$500</td>
+            <td><span class="name">Voice and audio</span><span class="desc">Private transcription, text-to-speech and voice assistants with MLX Audio or on a GPU. Custom voices only from recordings you have the rights to.</span></td>
+            <td class="mono">2–3 days</td><td class="price">$800</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="group">Fine-tune models</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Service</th><th>Time</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="name">Fine-tune on your data</span><span class="desc">LoRA or QLoRA fine-tuning of a language model on your examples, on a DGX Spark, an RTX GPU or a Mac with MLX. Includes a before-and-after evaluation on held-out data.</span></td>
+            <td class="mono">1–2 weeks</td><td class="price">from $2,000</td>
+          </tr>
+          <tr>
+            <td><span class="name">Image style or product model</span><span class="desc">Train an image model on your products, characters or brand style so it produces them consistently.</span></td>
+            <td class="mono">1 week</td><td class="price">from $1,200</td>
+          </tr>
+          <tr>
+            <td><span class="name">Convert and quantize</span><span class="desc">Get a model running on your hardware: MLX, GGUF, NVFP4 or int4, with the speed and accuracy measured against the original.</span></td>
+            <td class="mono">2–3 days</td><td class="price">$700</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <h3 class="group">Advise and secure</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Service</th><th>Time</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="name">Which hardware should I buy?</span><span class="desc">A written recommendation for your models and budget, from someone who runs DGX Spark, RTX and Mac setups every day.</span></td>
+            <td class="mono">1 day</td><td class="price">$300</td>
+          </tr>
+          <tr>
+            <td><span class="name">Security review of a self-hosted AI</span><span class="desc">Who can reach your model server, what it exposes, how keys and data are handled. A prioritised fix list.</span></td>
+            <td class="mono">2 days</td><td class="price">$800</td>
           </tr>
           <tr>
             <td><span class="name">Support retainer</span><span class="desc">Async help, model swaps and upgrades, with a backup and rollback plan before every change.</span></td>
@@ -225,7 +283,7 @@ section { display: grid; gap: 24px; }
         </tbody>
       </table>
     </div>
-    <p class="note">Bring-up includes a 14-day fix window. 50% up front, 50% on hand-off, or platform escrow.</p>
+    <p class="note">Fixed quote before any work starts. Setup work includes a 14-day fix window. 50% up front, 50% on hand-off, or platform escrow. Larger projects quoted separately.</p>
   </section>
 
   <section aria-labelledby="vid">
@@ -301,9 +359,11 @@ section { display: grid; gap: 24px; }
     <h2 id="faq">FAQ</h2>
     <div class="faq">
       <div><h3>NVIDIA's Cluster Assistant already connects two Sparks. Why pay?</h3><p>It connects them. Whether NCCL is really on RDMA, both rails carry traffic, and the model reaches the recipe's speed on your prompts is a separate job.</p></div>
-      <div><h3>Which models?</h3><p>Anything that fits: MoE models at NVFP4, EXL3 or int4, the GLM, Qwen and DeepSeek families, and image models on a discrete GPU.</p></div>
+      <div><h3>Which models?</h3><p>Open-weight language, vision, image, video and audio models: the Qwen, GLM, DeepSeek and Llama families, Qwen-Image, Whisper and others, at whatever precision fits your hardware.</p></div>
+      <div><h3>Can fine-tuning make a small model as good as a big one?</h3><p>For a narrow task, often close. For general knowledge, no. The evaluation before any fine-tune tells you which case you are in, before you pay for training.</p></div>
+      <div><h3>Mac, Spark or RTX: which should I buy?</h3><p>It depends on the model size and how fast you need answers. I run all three daily, so I can tell you what each one handles before you spend money. Software does not always carry over: engines built for Apple's MLX do not run on a Spark, and the reverse.</p></div>
       <div><h3>Do you host models for me?</h3><p>No. Your hardware, your data. I don't resell inference.</p></div>
-      <div><h3>Is this affiliated with NVIDIA or ASUS?</h3><p>No. Independent consulting, based on running these boxes daily: two GB10s and an RTX PRO 5000 workstation.</p></div>
+      <div><h3>Is this affiliated with NVIDIA or ASUS?</h3><p>No. Independent consulting, based on running these boxes daily: two GB10s, an RTX PRO 5000 workstation and an Apple Silicon Mac running MLX.</p></div>
     </div>
   </section>
 

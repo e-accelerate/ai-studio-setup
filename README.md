@@ -1,8 +1,10 @@
 # AI Studio Setup
 
-Landing page for fixed-price remote setup of local AI hardware:
+Landing page for fixed-price remote work on private AI running on your own hardware:
 
-- two-box DGX Spark / GB10 clusters (ConnectX RDMA, model serving, coding-agent integration)
-- private AI studios on a single RTX workstation (fast LLM, image and video generation)
+- hardware setup: DGX Spark / GB10 clusters, Windows RTX workstations, Apple Silicon Macs (MLX)
+- private AI builds: coding agents on local models, chat with your documents, image and video studios, voice and audio
+- fine-tuning on DGX Spark, RTX GPUs and MLX, plus model conversion and quantization
+- hardware advice and security reviews of self-hosted AI
 
 The page is a single static `index.html`, served with GitHub Pages.
