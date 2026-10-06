@@ -39,3 +39,10 @@ SwiftUI and MLX sources and development records. MacBook applications and MacBoo
 MLX usage are included from the developer’s account. No App Store publication or
 new cross-device benchmark is claimed. Local model execution and remote generation
 services are distinguished.
+
+## Featured demo
+
+`assets/modeldeck-demo.mp4` is the provided Accelerate_ModelDeck-Promo-Final.mp4
+remuxed without re-encoding for progressive playback (MP4 faststart). Existing
+scenes, audio and privacy cuts are preserved. The video appears on the homepage
+and Apple apps page, with native controls, a poster and no autoplay or preload.
