@@ -1,0 +1,10 @@
+eAccelerate — Five checks before deploying private AI
+
+1. Workload: Define representative prompts and expected outputs.
+2. Memory and cooling: Measure under load with the model and context you plan to use.
+3. Network path: For a cluster, verify the intended RDMA rails carry real traffic.
+4. Full request: Time an application request, including loading and first-token latency.
+5. Recovery and access: Test restart and rollback; review endpoint access.
+
+Discuss your setup: accelerate42@icloud.com
+https://e-accelerate.github.io/ai-studio-setup/

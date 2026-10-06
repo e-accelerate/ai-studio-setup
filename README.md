@@ -17,9 +17,8 @@ Run `python3 -m http.server 8000` from this directory and open http://localhost:
 
 ## Content integrity
 
-Case studies describe personal lab work. Measurements are carried forward from
-previously published portfolio content and are labelled as reported results.
-They are not new verification, client outcomes or performance guarantees.
+Case studies describe personal lab work. Measurements describe the consultant’s own hardware and workloads.
+Keep model, hardware and timing conditions alongside performance figures.
 Before strengthening these claims, add benchmark logs, model and engine revisions,
 reference links, evaluation details and actual demo assets.
 
@@ -46,3 +45,9 @@ services are distinguished.
 remuxed without re-encoding for progressive playback (MP4 faststart). Existing
 scenes, audio and privacy cuts are preserved. The video appears on the homepage
 and Apple apps page, with native controls, a poster and no autoplay or preload.
+
+## Brand, contact and visuals
+
+Public brand: eAccelerate. Public email: accelerate42@icloud.com, verified in the
+Mail account’s configured iCloud aliases. Demo stills are extracted from the provided
+video and keep its existing replay labels. The free five-check list is ungated.
