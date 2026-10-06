@@ -25,11 +25,13 @@ reference links, evaluation details and actual demo assets.
 The site does not invent clients, testimonials, qualifications or contact details.
 Contact remains [@EAccelerate_42 on X](https://x.com/EAccelerate_42).
 
-## Broader capabilities
+## Positioning and services
 
-The services page includes sixteen engagement families. These are scoped offerings,
-not fabricated delivery history. Implementation commitments depend on prior
-validation on the consultant’s hardware and client-agreed acceptance criteria.
+Focus: private AI deployment and optimisation on Apple Silicon, DGX / GB10 and
+RTX, including native Apple apps and workflows using private models. The services
+page leads with fixed-price packages, followed by five compact expandable options
+for larger engagements. Generic strategy, forecasting and unrelated advisory
+capabilities are removed. Service tables stack into readable cards below 700px.
 
 ## Apple application work
 
