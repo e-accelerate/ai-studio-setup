@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Fixed-price remote setup for DGX Spark / GB10 clusters and private AI studios on RTX workstations.">
+<title>AI Studio Setup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single spec-sheet column — measured claims first, packages as a price table, process as a real sequence. */
+:root {
+  --bg: #eef1ef;
+  --surface: #f9faf9;
+  --fg: #16201c;
+  --muted: #56645e;
+  --line: #cdd5d1;
+  --copper: #a85a22;
+  --copper-soft: #f1dfd1;
+  --ref: #6b7a73;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111715; --surface: #18201d; --fg: #e3e9e6; --muted: #9aa8a1; --line: #2c3833;
+    --copper: #e3925a; --copper-soft: #3a271b; --ref: #8d9c95; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111715; --surface: #18201d; --fg: #e3e9e6; --muted: #9aa8a1; --line: #2c3833;
+  --copper: #e3925a; --copper-soft: #3a271b; --ref: #8d9c95; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+body {
+  background: var(--bg); color: var(--fg); font: 16px/1.6 var(--body);
+  padding-inline: 20px; padding-block: 0 64px;
+}
+.wrap { max-width: 960px; margin: 0 auto; display: grid; gap: 72px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.1; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.8rem); font-weight: 700; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2.1rem); font-weight: 700; }
+h3 { font-size: 1.15rem; font-weight: 500; }
+p { margin: 0; max-width: 65ch; }
+.label {
+  font: 500 0.75rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted);
+}
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+a { color: var(--copper); }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--copper); outline-offset: 3px; }
+
+/* hero */
+header { display: grid; gap: 20px; padding-top: 56px; }
+.cable { height: 6px; border-radius: 3px; background: linear-gradient(90deg, var(--copper), var(--copper-soft) 50%, var(--copper)); max-width: 220px; }
+.lede { font-size: 1.15rem; color: var(--muted); }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.btn {
+  display: inline-block; padding: 12px 20px; border-radius: 6px; font-weight: 600; text-decoration: none;
+  background: var(--copper); color: var(--surface); border: 1px solid var(--copper);
+}
+.btn.ghost { background: transparent; color: var(--copper); }
+
+/* evidence */
+.evidence { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; }
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: grid; gap: 12px; min-width: 0; align-content: start; }
+.figure svg { width: 100%; height: auto; display: block; }
+.figure p { font-size: 0.92rem; color: var(--muted); }
+
+/* packages */
+.table-wrap { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 560px; }
+th, td { text-align: left; padding: 16px 12px; border-bottom: 1px solid var(--line); vertical-align: top; }
+th { font: 500 0.75rem/1 var(--mono); text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+td.price { font: 500 1.1rem var(--mono); white-space: nowrap; font-variant-numeric: tabular-nums; }
+td .name { font-weight: 600; display: block; margin-bottom: 4px; }
+td .desc { color: var(--muted); font-size: 0.93rem; }
+.note { font-size: 0.92rem; color: var(--muted); }
+
+/* video */
+.video { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.poster {
+  aspect-ratio: 16 / 9; max-width: 100%; border-radius: 8px; background: var(--surface); border: 1px solid var(--line);
+  display: grid; place-items: center; padding: 20px; text-align: center; gap: 8px;
+}
+.poster .big { font: 700 clamp(1.4rem, 4vw, 2.2rem)/1.1 var(--display); }
+.poster .big span { color: var(--copper); }
+.specs { margin: 0; display: grid; gap: 0; }
+.specs div { display: flex; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px solid var(--line); }
+.specs dt { color: var(--fg); font-size: 0.93rem; min-width: 0; }
+.specs dd { margin: 0; color: var(--copper); font-weight: 500; white-space: nowrap; }
+.fixes { margin: 0; padding-left: 1.1em; display: grid; gap: 8px; font-size: 0.93rem; color: var(--muted); }
+.chapters { list-style: none; padding: 0; margin: 0; display: grid; gap: 6px; font-size: 0.93rem; }
+.chapters li { display: grid; grid-template-columns: 3.5em 1fr; gap: 8px; }
+.chapters .mono { color: var(--muted); }
+
+/* process */
+ol.steps { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; counter-reset: s; }
+ol.steps li { counter-increment: s; display: grid; grid-template-columns: 2.5rem 1fr; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+ol.steps li::before { content: counter(s); font: 500 0.9rem var(--mono); color: var(--copper); padding-top: 2px; }
+
+/* faq + contact */
+.faq { display: grid; gap: 20px; }
+.faq div { display: grid; gap: 6px; }
+.faq p { color: var(--muted); }
+.contact { background: var(--copper-soft); border-radius: 8px; padding: 28px; display: grid; gap: 14px; }
+footer { font-size: 0.85rem; color: var(--muted); }
+
+section { display: grid; gap: 24px; }
+@media (max-width: 720px) { .video { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: no-preference) {
+  .btn { transition: transform .15s ease; }
+  .btn:hover { transform: translateY(-1px); }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="cable" aria-hidden="true"></div>
+    <span class="label">Remote setup · DGX Spark · ASUS GX10 · RTX workstations</span>
+    <h1>Two GB10 boxes, running at the speed the recipe promised.</h1>
+    <p class="lede">I set up DGX Spark and GB10 clusters over their ConnectX link, tune the model you want to run, and connect it to your coding agent. Fixed price, done remotely, every change reversible.</p>
+    <div class="cta-row">
+      <a class="btn" href="#packages">See packages</a>
+      <a class="btn ghost" href="#contact">Book a free 15-min call</a>
+    </div>
+  </header>
+
+  <section aria-labelledby="ev">
+    <span class="label">Measured on my own cluster</span>
+    <h2 id="ev">What the fixes are worth</h2>
+    <div class="evidence">
+      <div class="figure">
+        <h3>Prefill vs the published numbers</h3>
+        <svg viewBox="0 0 320 150" role="img" aria-label="Qwen prefill reached 104 to 111 percent and GLM 103 to 116 percent of the published reference">
+          <!-- scale: 90% at x=60, 120% at x=280 → 7.333 px per percent -->
+          <line x1="133.3" y1="18" x2="133.3" y2="112" stroke="var(--ref)" stroke-dasharray="3 3"/>
+          <text x="133.3" y="12" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">published = 100%</text>
+          <text x="54" y="52" text-anchor="end" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="var(--fg)">Qwen</text>
+          <rect x="162.7" y="40" width="51.3" height="16" rx="3" fill="var(--copper)"/>
+          <text x="218" y="52" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--fg)">104–111%</text>
+          <text x="54" y="90" text-anchor="end" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="var(--fg)">GLM</text>
+          <rect x="155.3" y="78" width="95.3" height="16" rx="3" fill="var(--copper)"/>
+          <text x="254" y="90" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--fg)">103–116%</text>
+          <line x1="60" y1="118" x2="280" y2="118" stroke="var(--line)"/>
+          <text x="60" y="134" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">90%</text>
+          <text x="133.3" y="134" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">100%</text>
+          <text x="206.7" y="134" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">110%</text>
+          <text x="280" y="134" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">120%</text>
+        </svg>
+        <p>After the ConnectX rails had sat at about 15 Gb/s each with every error counter reading clean.</p>
+      </div>
+      <div class="figure">
+        <h3>Cluster boot time, Qwen TP=2</h3>
+        <svg viewBox="0 0 300 150" role="img" aria-label="Boot time cut from about 780 seconds to about 170 seconds">
+          <!-- scale: 0 s at x=60, 800 s at x=280 → 0.275 px per second -->
+          <text x="54" y="52" text-anchor="end" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="var(--fg)">Before</text>
+          <rect x="60" y="40" width="214.5" height="16" rx="3" fill="var(--ref)"/>
+          <text x="54" y="90" text-anchor="end" font-family="IBM Plex Sans, sans-serif" font-size="12" fill="var(--fg)">After</text>
+          <rect x="60" y="78" width="46.8" height="16" rx="3" fill="var(--copper)"/>
+          <text x="112" y="90" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--fg)">~170 s</text>
+          <text x="268" y="34" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--fg)">~780 s</text>
+          <line x1="60" y1="118" x2="280" y2="118" stroke="var(--line)"/>
+          <text x="60" y="134" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">0</text>
+          <text x="170" y="134" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">400 s</text>
+          <text x="280" y="134" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">800 s</text>
+        </svg>
+        <p>Faster weight loading and a persistent compile cache, with draft acceptance and accuracy re-checked afterwards.</p>
+      </div>
+      <div class="figure">
+        <h3>45 °C → 85 °C in 15 s</h3>
+        <svg viewBox="0 0 300 150" role="img" aria-label="A headless box heating from 45 to 85 degrees Celsius in 15 seconds">
+          <!-- x: 0 s at 60, 15 s at 280; y: 40 °C at 118, 90 °C at 18 → 2 px per degree -->
+          <line x1="60" y1="28" x2="280" y2="28" stroke="var(--ref)" stroke-dasharray="3 3"/>
+          <text x="64" y="22" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">85 °C</text>
+          <line x1="60" y1="108" x2="280" y2="28" stroke="var(--copper)" stroke-width="2" stroke-dasharray="5 4"/>
+          <circle cx="60" cy="108" r="4" fill="var(--copper)"/>
+          <circle cx="280" cy="28" r="4" fill="var(--copper)"/>
+          <text x="60" y="104" text-anchor="start" dy="-8" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">45 °C</text>
+          <line x1="60" y1="118" x2="280" y2="118" stroke="var(--line)"/>
+          <text x="60" y="134" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">0 s</text>
+          <text x="280" y="134" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="10" fill="var(--muted)">15 s</text>
+        </svg>
+        <p>GB10 fans follow power draw, not temperature. Run headless and cooling can stop while every sensor reads clean. Two readings, 15 s apart. Behind four "crashes" on my box.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages" aria-labelledby="pk">
+    <span class="label">Fixed price, remote</span>
+    <h2 id="pk">Packages</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Package</th><th>Time</th><th>Price</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><span class="name">Health check</span><span class="desc">90-minute session: thermals, ConnectX link and RDMA, memory headroom, container and GPU-architecture sanity. Written findings and a fix list.</span></td>
+            <td class="mono">1 day</td><td class="price">$250</td>
+          </tr>
+          <tr>
+            <td><span class="name">Two-box cluster bring-up</span><span class="desc">NCCL on real RDMA (not silent TCP), both rails carrying traffic, persistent network config, one model served across both boxes and benchmarked on your real prompt sizes. Start/stop scripts and a runbook.</span></td>
+            <td class="mono">2–4 days</td><td class="price">$1,200</td>
+          </tr>
+          <tr>
+            <td><span class="name">Model serving + coding agent</span><span class="desc">One model tuned for your work (speculative decoding, KV budget, sampling) and connected to Claude Code, opencode or Hermes, checked against the requests your agent actually sends.</span></td>
+            <td class="mono">1–2 days</td><td class="price">$600</td>
+          </tr>
+          <tr>
+            <td><span class="name">Private AI studio</span><span class="desc">On one RTX workstation: a fast chat and coding model, image generation and editing, and short video with sound, exposed as tools your coding agent or chat app can call. Private network access only.</span></td>
+            <td class="mono">3–5 days</td><td class="price">$1,000</td>
+          </tr>
+          <tr>
+            <td><span class="name">Windows + RTX workstation</span><span class="desc">One big NVIDIA card in a Windows PC, set up for local AI: Docker in WSL2 that stays up, a model server that survives updates and reboots, and ComfyUI image or video workflows. Reachable privately from your other machines.</span></td>
+            <td class="mono">1–2 days</td><td class="price">$500</td>
+          </tr>
+          <tr>
+            <td><span class="name">Support retainer</span><span class="desc">Async help, model swaps and upgrades, with a backup and rollback plan before every change.</span></td>
+            <td class="mono">monthly</td><td class="price">$300/mo</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">Bring-up includes a 14-day fix window. 50% up front, 50% on hand-off, or platform escrow.</p>
+  </section>
+
+  <section aria-labelledby="vid">
+    <span class="label">Watch first</span>
+    <h2 id="vid">The five fixes, on video</h2>
+    <div class="video">
+      <div class="poster">
+        <div class="big">15 Gb/s → <span>full speed</span></div>
+        <span class="label">Video coming soon</span>
+      </div>
+      <ul class="chapters">
+        <li><span class="mono">0:40</span><span>Reboot before you believe a hardware limit</span></li>
+        <li><span class="mono">1:50</span><span>The second ConnectX rail</span></li>
+        <li><span class="mono">3:00</span><span>The NCCL_IB_HCA syntax trap</span></li>
+        <li><span class="mono">3:50</span><span>Leave the GID index empty</span></li>
+        <li><span class="mono">4:40</span><span>The fans stop when headless</span></li>
+        <li><span class="mono">6:00</span><span>Benchmark the prompt your client sends</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section aria-labelledby="rtx">
+    <span class="label">Also on Windows · measured on one RTX PRO 5000 (48 GB)</span>
+    <h2 id="rtx">A private AI studio on one workstation</h2>
+    <p>Fast chat and coding model, image studio and video studio on a single card, all usable as tools by your coding agent or chat app.</p>
+    <div class="evidence">
+      <div class="figure">
+        <h3>Qwen3.8-27B on SGLang</h3>
+        <dl class="specs">
+          <div><dt>Generation speed</dt><dd class="mono">300+ tok/s</dd></div>
+          <div><dt>Prompt reading, 22,000-token prompt</dt><dd class="mono">6,073 tok/s</dd></div>
+          <div><dt>First token on that prompt</dt><dd class="mono">3.7 s</dd></div>
+          <div><dt>Context window</dt><dd class="mono">262,144</dd></div>
+        </dl>
+        <p>NVFP4 weights with a DFlash2 speculative drafter on one 48 GB card. Vision included, so one endpoint reads images too.</p>
+      </div>
+      <div class="figure">
+        <h3>Image and video studio</h3>
+        <dl class="specs">
+          <div><dt>New image, 1536×864</dt><dd class="mono">18 s</dd></div>
+          <div><dt>Edit an image</dt><dd class="mono">8 s</dd></div>
+          <div><dt>Transparent PNG, 1024×1024</dt><dd class="mono">26 s</dd></div>
+          <div><dt>5 s video clip with sound, 864×480</dt><dd class="mono">34 s</dd></div>
+        </dl>
+        <p>Qwen-Image for stills and edits, a local video model with audio. Image times include a cold start; the video time is warm.</p>
+      </div>
+      <div class="figure">
+        <h3>Problems already solved on Windows</h3>
+        <ul class="fixes">
+          <li>Docker in WSL2 dying whenever the last session closes</li>
+          <li>An Ollama auto-update that deleted its own runner</li>
+          <li>WSL2 memory numbers that hide paging to system RAM</li>
+          <li>Image and video stacks sharing one process, so switching never reloads a 40 GB model</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="how">
+    <span class="label">How it works</span>
+    <h2 id="how">From first call to hand-off</h2>
+    <ol class="steps">
+      <li><div><h3>Free 15-minute call</h3><p>Your hardware, the model you want, and what you want it to do.</p></div></li>
+      <li><div><h3>Fixed quote</h3><p>You pick a package. No hourly surprises.</p></div></li>
+      <li><div><h3>Access on your terms</h3><p>A temporary SSH key or a shared screen. I never ask for passwords, and the key is removed at the end.</p></div></li>
+      <li><div><h3>Snapshot first</h3><p>Your current configuration is backed up before anything changes, so every step can be undone.</p></div></li>
+      <li><div><h3>Hand-off</h3><p>A runbook written for your setup, plus benchmark numbers on your own prompts.</p></div></li>
+    </ol>
+  </section>
+
+  <section aria-labelledby="faq">
+    <span class="label">Questions</span>
+    <h2 id="faq">FAQ</h2>
+    <div class="faq">
+      <div><h3>NVIDIA's Cluster Assistant already connects two Sparks. Why pay?</h3><p>It connects them. Whether NCCL is really on RDMA, both rails carry traffic, and the model reaches the recipe's speed on your prompts is a separate job.</p></div>
+      <div><h3>Which models?</h3><p>Anything that fits: MoE models at NVFP4, EXL3 or int4, the GLM, Qwen and DeepSeek families, and image models on a discrete GPU.</p></div>
+      <div><h3>Do you host models for me?</h3><p>No. Your hardware, your data. I don't resell inference.</p></div>
+      <div><h3>Is this affiliated with NVIDIA or ASUS?</h3><p>No. Independent consulting, based on running these boxes daily: two GB10s and an RTX PRO 5000 workstation.</p></div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact" aria-labelledby="ct">
+    <h2 id="ct">Book a free 15-minute call</h2>
+    <p>Contact details coming soon.</p>
+  </section>
+
+  <footer>Independent consultant. All figures measured on my own two-box GB10 cluster and RTX PRO 5000 workstation; your results depend on your hardware, cabling and model.</footer>
+</div>
+
+</body>
+</html>
